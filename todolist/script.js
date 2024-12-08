@@ -25,7 +25,7 @@ function ReadToDoItems() {
         ? `<img class="edit todo-controls" onclick="UpdateToDoItems(${index})" src="./Images/edit.png" />`
         : ""
       }
-        <img class="delete todo-controls" onclick="DeleteToDoItems(${index})" src="./images/delete.png" />
+        <img class="delete todo-controls" onclick="DeleteToDoItems(${index})" src="./Images/delete.png" />
       </div>`;
     li.innerHTML = todoItems;
     listItems.appendChild(li);
@@ -51,7 +51,7 @@ function CreateToDoItems() {
     setAlertMessage("Todo item updated successfully!", "blue");
     updateIndex = null;
     addUpdate.setAttribute("onclick", "CreateToDoItems()");
-    addUpdate.setAttribute("src", "./images/plus.gif");
+    addUpdate.setAttribute("src", "./Images/plus.gif");
   } else {
     if (todo.some((el) => el.item === task)) {
       setAlertMessage("This item already exists!", "red");
@@ -79,7 +79,7 @@ function UpdateToDoItems(index) {
   todoValue.value = todo[index].item;
   updateIndex = index;
   addUpdate.setAttribute("onclick", "CreateToDoItems()");
-  addUpdate.setAttribute("src", "./images/refresh.png");
+  addUpdate.setAttribute("src", "./Images/refresh.png");
   todoValue.focus();
 }
 
