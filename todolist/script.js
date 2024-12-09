@@ -82,7 +82,23 @@ function UpdateToDoItems(index) {
   addUpdate.setAttribute("src", "./Images/refresh.png");
   todoValue.focus();
 }
+//Delete all completed item
+function DeleteAllCompletedTasks() {
+    // Filter out tasks that are completed (status = true)
+    const incompleteTasks = todo.filter(task => !task.status);
 
+    // Update the todo array to only include incomplete tasks
+    todo = incompleteTasks;
+
+    // Update the localStorage with the updated tasks list
+    setLocalStorage();
+
+    // Update the UI to reflect the changes
+    ReadToDoItems();
+
+    // Display a message to the user
+    setAlertMessage("All completed tasks have been deleted!", "green");
+}
 // Delete item
 function DeleteToDoItems(index) {
   if (confirm(`Are you sure you want to delete "${todo[index].item}"?`)) {
