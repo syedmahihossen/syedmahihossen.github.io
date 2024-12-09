@@ -14,31 +14,111 @@ function updateTaskCounter() {
 
 // Initialize UI with stored items
 function ReadToDoItems() {
+
+    todo = mergeSort(todo, (a, b) => {
+
+        if (a.status && !b.status) return 1;
+        if (!a.status && b.status) return -1;
+
+        const currentTime = new Date().getTime();
+        const timeA = a.deadline ? new Date(a.deadline).getTime() : Infinity;
+        const timeB = b.deadline ? new Date(b.deadline).getTime() : Infinity;
+
+        const isOverdueA = !a.status && timeA < currentTime;
+        const isOverdueB = !b.status && timeB < currentTime;
+
+
+        if (isOverdueA && !isOverdueB) return 1;
+        if (!isOverdueA && isOverdueB) return -1;
+
+
+        if (!isOverdueA && !isOverdueB) {
+            return timeA - timeB;
+        }
+
+        return 0;
+    });
+
+    // Clear the UI and re-render tasks
     listItems.innerHTML = "";
     todo.forEach((element, index) => {
         let li = document.createElement("li");
+
+        const countdown = element.status ? "Completed" : getCountdown(element.deadline);
+        const deadlineStatus = getDeadlineStatus(element.deadline, element.status);
+
         const completedStyle = element.status ? "style='text-decoration: line-through'" : "";
+
         const todoItems = `
-      <div ${completedStyle} ondblclick="CompletedToDoItems(${index})">${element.item}</div>
-      <div>
-        ${!element.status
+            <div class="todo-item-text" ${completedStyle} ondblclick="CompletedToDoItems(${index})">${element.item}</div>
+            <div class="todo-item-controls">
+                <div class="countdown ${deadlineStatus}">${countdown}</div>
+                ${!element.status
                 ? `<img class="edit todo-controls" onclick="UpdateToDoItems(${index})" src="./Images/edit.png" />`
                 : ""
             }
-        <img class="delete todo-controls" onclick="DeleteToDoItems(${index})" src="./Images/delete.png" />
-      </div>`;
+                <img class="delete todo-controls" onclick="DeleteToDoItems(${index})" src="./Images/delete.png" />
+            </div>
+        `;
+
         li.innerHTML = todoItems;
         listItems.appendChild(li);
     });
     updateTaskCounter();
 }
 
+
+
+
+// Get the countdown text for each task
+function getCountdown(deadline) {
+    if (!deadline) return "No deadline";
+
+    const deadlineTime = new Date(deadline).getTime();
+    const currentTime = new Date().getTime();
+    const timeRemaining = deadlineTime - currentTime;
+
+    if (timeRemaining < 0) {
+        return "Overdue";
+    }
+
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+function getDeadlineStatus(deadline, status) {
+    if (status) {
+        return todo.find(task => task.completionStatus === "completed-late") ? "completed-late" : "completed-on-time";
+    }
+
+    const deadlineTime = new Date(deadline).getTime();
+    const currentTime = new Date().getTime();
+
+    if (currentTime > deadlineTime) {
+        return "overdue";
+    }
+    return "on-time";
+}
+
+
+
+
 // Add or update to-do items
 function CreateToDoItems() {
     const task = todoValue.value.trim();
+    const deadline = document.getElementById("todoDeadline").value;
 
     if (task === "") {
         setAlertMessage("Please enter your todo text!", "red");
+        return;
+    }
+
+    if (!deadline) {
+        setAlertMessage("Please set a deadline for your task!", "red");
         return;
     }
 
@@ -48,6 +128,7 @@ function CreateToDoItems() {
             return;
         }
         todo[updateIndex].item = task;
+        todo[updateIndex].deadline = deadline;
         setAlertMessage("Todo item updated successfully!", "blue");
         updateIndex = null;
         addUpdate.setAttribute("onclick", "CreateToDoItems()");
@@ -57,22 +138,70 @@ function CreateToDoItems() {
             setAlertMessage("This item already exists!", "red");
             return;
         }
-        todo.push({ item: task, status: false });
+        todo.push({ item: task, deadline, status: false });
         setAlertMessage("Todo item created successfully!", "green");
     }
 
     todoValue.value = "";
+    document.getElementById("todoDeadline").value = "";
     setLocalStorage();
     ReadToDoItems();
 }
 
+//countdown refresh
+
+function updateCountdowns() {
+    todo.forEach((element, index) => {
+        const countdownElement = document.querySelectorAll(".countdown")[index];
+        if (countdownElement) {
+            if (element.status) {
+                countdownElement.innerText = "Completed";
+                countdownElement.className = "countdown completed-on-time";
+            } else {
+                const countdown = getCountdown(element.deadline);
+                countdownElement.innerText = countdown;
+
+                const deadlineStatus = getDeadlineStatus(element.deadline, element.status);
+                countdownElement.className = `countdown ${deadlineStatus}`;
+            }
+        }
+    });
+}
+
+// Initialize countdown updates every second
+setInterval(updateCountdowns, 1000);
+
+// Initial call to display countdowns immediately
+updateCountdowns();
+
+
 // Mark item as complete
 function CompletedToDoItems(index) {
-    todo[index].status = true;
+    const task = todo[index];
+    const deadlineTime = new Date(task.deadline).getTime();
+    const currentTime = new Date().getTime();
+
+    if (currentTime <= deadlineTime) {
+        // Task completed on time
+        setAlertMessage(`Task "${task.item}" completed on time!`, "green");
+        todo[index].status = true;
+        todo[index].completionStatus = "completed-on-time";
+    } else {
+        // Task completed overdue
+        setAlertMessage(`Task "${task.item}" completed with overdue!`, "orange");
+        todo[index].status = true;
+        todo[index].completionStatus = "completed-late";
+    }
     setLocalStorage();
-    setAlertMessage("Todo item marked as completed!", "green");
     ReadToDoItems();
 }
+
+
+// Update local storage
+function setLocalStorage() {
+    localStorage.setItem("todo-list", JSON.stringify(todo));
+}
+
 
 // Prepare item for editing
 function UpdateToDoItems(index) {
@@ -156,11 +285,22 @@ function SearchToDoItems() {
 
 // Sort tasks alphabetically using merge sort
 function SortToDoItems() {
-    todo = mergeSort(todo, (a, b) => a.item.localeCompare(b.item));
+    todo = mergeSort(todo, (a, b) => {
+        // If one task is completed and the other is not, place completed ones at the bottom
+        if (a.status && !b.status) return 1;
+        if (!a.status && b.status) return -1;
+
+        // If neither are completed, sort by countdown time
+        const timeA = a.deadline ? new Date(a.deadline).getTime() : Infinity;
+        const timeB = b.deadline ? new Date(b.deadline).getTime() : Infinity;
+        return timeA - timeB;
+    });
+
     setLocalStorage();
-    setAlertMessage("Tasks sorted successfully!", "green");
+    setAlertMessage("Tasks sorted by deadline!", "green");
     ReadToDoItems();
 }
+
 
 // Merge sort algorithm
 function mergeSort(array, comparator) {
@@ -176,11 +316,15 @@ function mergeSort(array, comparator) {
 function merge(left, right, comparator) {
     let result = [];
     while (left.length && right.length) {
-        if (comparator(left[0], right[0]) < 0) result.push(left.shift());
-        else result.push(right.shift());
+        if (comparator(left[0], right[0]) <= 0) {
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
     }
     return [...result, ...left, ...right];
 }
+
 
 // Binary search algorithm
 function binarySearch(array, target) {
