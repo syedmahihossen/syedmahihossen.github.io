@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To-Do List</title>
+    <title>Priority List</title>
     <link rel="icon" href="./Images/todoicon.ico" type="image/icon type">
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -12,13 +12,15 @@
 <body>
     <div class="container">
         <div class="todo-header">
-            <h2>To-Do List</h2>
+            <h2>Priority List</h2>
             <img src="./Images/to-do-list.gif" height="50px" alt="Notebook" />
         </div>
         <div class="todo-body">
             <input type="text" id="todoText" class="todo-input" placeholder="Add your items" />
+            <input type="datetime-local" id="todoDeadline" class="todo-input" />
             <img src="./Images/plus.gif" alt="Add" id="AddUpdateClick" onclick="CreateToDoItems();" />
         </div>
+
         <div class="todo-actions">
             <input type="text" id="searchText" class="search-input" placeholder="Search tasks"
                 onkeyup="SearchToDoItems()" />
