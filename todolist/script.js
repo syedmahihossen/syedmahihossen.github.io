@@ -96,23 +96,29 @@ function DeleteToDoItems(index) {
 // Search for tasks using binary search
 function SearchToDoItems() {
   const query = searchText.value.trim().toLowerCase();
+
   if (!query) {
-    ReadToDoItems();
+    ReadToDoItems(); // Show all tasks if no query is entered
     return;
   }
 
-  const sortedTasks = todo.map((item) => item.item.toLowerCase()).sort();
-  const index = binarySearch(sortedTasks, query);
+  // Filter tasks that start with the typed query or contain it
+  const filteredTasks = todo.filter(item => item.item.toLowerCase().startsWith(query));
 
-  if (index !== -1) {
-    const foundTask = todo.find((item) => item.item.toLowerCase() === sortedTasks[index]);
-    listItems.innerHTML = `<li>${foundTask.item}</li>`;
-    setAlertMessage(`Task "${query}" found!`, "blue");
+  if (filteredTasks.length > 0) {
+    listItems.innerHTML = ""; // Clear the list
+    filteredTasks.forEach(task => {
+      const li = document.createElement("li");
+      li.textContent = task.item;
+      listItems.appendChild(li);
+    });
+    setAlertMessage(`Tasks starting with "${query}" found!`, "blue");
   } else {
     listItems.innerHTML = "<li>No tasks found!</li>";
-    setAlertMessage("No matching tasks found!", "red");
+    setAlertMessage(`No tasks starting with "${query}"!`, "red");
   }
 }
+
 
 // Sort tasks alphabetically using merge sort
 function SortToDoItems() {
