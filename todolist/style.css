@@ -18,7 +18,7 @@ body {
 .container {
   background: #ffffff;
   padding: 25px;
-  width: 550px;
+  width: 750px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -172,6 +172,11 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+}
+.countdown {
+    font-size: 14px;
+    color: #ff5722;
+    margin-left: 10px;
 }
 
 button:hover {
