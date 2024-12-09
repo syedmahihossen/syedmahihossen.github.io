@@ -9,211 +9,208 @@ let todo = JSON.parse(localStorage.getItem("todo-list")) || [];
 let updateIndex = null;
 
 function updateTaskCounter() {
-  taskCounter.innerText = `Total Tasks: ${todo.length}`;
+    taskCounter.innerText = `Total Tasks: ${todo.length}`;
 }
 
 // Initialize UI with stored items
 function ReadToDoItems() {
-  listItems.innerHTML = "";
-  todo.forEach((element, index) => {
-    let li = document.createElement("li");
-    const completedStyle = element.status ? "style='text-decoration: line-through'" : "";
-    const todoItems = `
+    listItems.innerHTML = "";
+    todo.forEach((element, index) => {
+        let li = document.createElement("li");
+        const completedStyle = element.status ? "style='text-decoration: line-through'" : "";
+        const todoItems = `
       <div ${completedStyle} ondblclick="CompletedToDoItems(${index})">${element.item}</div>
       <div>
         ${!element.status
-        ? `<img class="edit todo-controls" onclick="UpdateToDoItems(${index})" src="./Images/edit.png" />`
-        : ""
-      }
+                ? `<img class="edit todo-controls" onclick="UpdateToDoItems(${index})" src="./Images/edit.png" />`
+                : ""
+            }
         <img class="delete todo-controls" onclick="DeleteToDoItems(${index})" src="./Images/delete.png" />
       </div>`;
-    li.innerHTML = todoItems;
-    listItems.appendChild(li);
-  });
-  updateTaskCounter();
+        li.innerHTML = todoItems;
+        listItems.appendChild(li);
+    });
+    updateTaskCounter();
 }
 
 // Add or update to-do items
 function CreateToDoItems() {
-  const task = todoValue.value.trim();
+    const task = todoValue.value.trim();
 
-  if (task === "") {
-    setAlertMessage("Please enter your todo text!", "red");
-    return;
-  }
-
-  if (updateIndex !== null) {
-    if (todo.some((el, idx) => el.item === task && idx !== updateIndex)) {
-      setAlertMessage("This item already exists!", "red");
-      return;
+    if (task === "") {
+        setAlertMessage("Please enter your todo text!", "red");
+        return;
     }
-    todo[updateIndex].item = task;
-    setAlertMessage("Todo item updated successfully!", "blue");
-    updateIndex = null;
-    addUpdate.setAttribute("onclick", "CreateToDoItems()");
-    addUpdate.setAttribute("src", "./Images/plus.gif");
-  } else {
-    if (todo.some((el) => el.item === task)) {
-      setAlertMessage("This item already exists!", "red");
-      return;
-    }
-    todo.push({ item: task, status: false });
-    setAlertMessage("Todo item created successfully!", "green");
-  }
 
-  todoValue.value = "";
-  setLocalStorage();
-  ReadToDoItems();
+    if (updateIndex !== null) {
+        if (todo.some((el, idx) => el.item === task && idx !== updateIndex)) {
+            setAlertMessage("This item already exists!", "red");
+            return;
+        }
+        todo[updateIndex].item = task;
+        setAlertMessage("Todo item updated successfully!", "blue");
+        updateIndex = null;
+        addUpdate.setAttribute("onclick", "CreateToDoItems()");
+        addUpdate.setAttribute("src", "./Images/plus.gif");
+    } else {
+        if (todo.some((el) => el.item === task)) {
+            setAlertMessage("This item already exists!", "red");
+            return;
+        }
+        todo.push({ item: task, status: false });
+        setAlertMessage("Todo item created successfully!", "green");
+    }
+
+    todoValue.value = "";
+    setLocalStorage();
+    ReadToDoItems();
 }
 
 // Mark item as complete
 function CompletedToDoItems(index) {
-  todo[index].status = true;
-  setLocalStorage();
-  setAlertMessage("Todo item marked as completed!", "green");
-  ReadToDoItems();
+    todo[index].status = true;
+    setLocalStorage();
+    setAlertMessage("Todo item marked as completed!", "green");
+    ReadToDoItems();
 }
 
 // Prepare item for editing
 function UpdateToDoItems(index) {
-  todoValue.value = todo[index].item;
-  updateIndex = index;
-  addUpdate.setAttribute("onclick", "CreateToDoItems()");
-  addUpdate.setAttribute("src", "./Images/refresh.png");
-  todoValue.focus();
+    todoValue.value = todo[index].item;
+    updateIndex = index;
+    addUpdate.setAttribute("onclick", "CreateToDoItems()");
+    addUpdate.setAttribute("src", "./Images/refresh.png");
+    todoValue.focus();
 }
 //Delete all completed item
 function DeleteAllCompletedTasks() {
-    // Filter out tasks that are completed (status = true)
-    const incompleteTasks = todo.filter(task => !task.status);
+    const completedTasks = todo.filter((task) => task.status === true);
 
-    // Update the todo array to only include incomplete tasks
-    todo = incompleteTasks;
-
-    // Update the localStorage with the updated tasks list
-    setLocalStorage();
-
-    // Update the UI to reflect the changes
-    ReadToDoItems();
-
-    // Display a message to the user
-    setAlertMessage("All completed tasks have been deleted!", "green");
+    if (completedTasks.length === 0) {
+        setAlertMessage("No completed tasks available to delete.", "orange");
+    } else {
+        todo = todo.filter((task) => task.status === false);
+        setLocalStorage();
+        setAlertMessage("All completed tasks have been deleted.", "red");
+        ReadToDoItems();
+    }
 }
+
 // Delete item
-let itemToDelete = null; // Store the task that will be deleted
+let itemToDelete = null;
 
 // Function to show the modal with the task's name
 function DeleteToDoItems(index) {
-  itemToDelete = index; // Store the index of the item to be deleted
-  const item = todo[index];
-  const modalMessage = `Are you sure you want to delete "${item.item}"?`;
-  document.getElementById("modalMessage").textContent = modalMessage;
-  document.getElementById("confirmationModal").style.display = "flex"; // Show the modal
+    itemToDelete = index;
+    const item = todo[index];
+    const modalMessage = `Are you sure you want to delete "${item.item}"?`;
+    document.getElementById("modalMessage").textContent = modalMessage;
+    document.getElementById("confirmationModal").style.display = "flex";
 }
 
 // Confirm the deletion
 function confirmDeleteItem() {
-  if (itemToDelete !== null) {
-    // Delete the task from the todo array
-    todo.splice(itemToDelete, 1);
-    setLocalStorage();
-    setAlertMessage("Todo item deleted successfully!", "red");
-    ReadToDoItems();
-    closeModal();
-  }
+    if (itemToDelete !== null) {
+        // Delete the task from the todo array
+        todo.splice(itemToDelete, 1);
+        setLocalStorage();
+        setAlertMessage("Todo item deleted successfully!", "red");
+        ReadToDoItems();
+        closeModal();
+    }
 }
 
 // Close the modal without deleting
 function closeModal() {
-  document.getElementById("confirmationModal").style.display = "none"; // Hide the modal
-  itemToDelete = null; // Clear the item to delete
+    document.getElementById("confirmationModal").style.display = "none";
+    itemToDelete = null;
 }
 
 
 // Search for tasks using binary search
 function SearchToDoItems() {
-  const query = searchText.value.trim().toLowerCase();
+    const query = searchText.value.trim().toLowerCase();
 
-  if (!query) {
-    ReadToDoItems(); // Show all tasks if no query is entered
-    return;
-  }
+    if (!query) {
+        ReadToDoItems();
+        return;
+    }
 
-  // Filter tasks that start with the typed query or contain it
-  const filteredTasks = todo.filter(item => item.item.toLowerCase().startsWith(query));
 
-  if (filteredTasks.length > 0) {
-    listItems.innerHTML = ""; // Clear the list
-    filteredTasks.forEach(task => {
-      const li = document.createElement("li");
-      li.textContent = task.item;
-      listItems.appendChild(li);
-    });
-    setAlertMessage(`Tasks starting with "${query}" found!`, "blue");
-  } else {
-    listItems.innerHTML = "<li>No tasks found!</li>";
-    setAlertMessage(`No tasks starting with "${query}"!`, "red");
-  }
+    const filteredTasks = todo.filter(item => item.item.toLowerCase().startsWith(query));
+
+    if (filteredTasks.length > 0) {
+        listItems.innerHTML = "";
+        filteredTasks.forEach(task => {
+            const li = document.createElement("li");
+            li.textContent = task.item;
+            listItems.appendChild(li);
+        });
+        setAlertMessage(`Tasks starting with "${query}" found!`, "blue");
+    } else {
+        listItems.innerHTML = "<li>No tasks found!</li>";
+        setAlertMessage(`No tasks starting with "${query}"!`, "red");
+    }
 }
 
 
 // Sort tasks alphabetically using merge sort
 function SortToDoItems() {
-  todo = mergeSort(todo, (a, b) => a.item.localeCompare(b.item));
-  setLocalStorage();
-  setAlertMessage("Tasks sorted successfully!", "green");
-  ReadToDoItems();
+    todo = mergeSort(todo, (a, b) => a.item.localeCompare(b.item));
+    setLocalStorage();
+    setAlertMessage("Tasks sorted successfully!", "green");
+    ReadToDoItems();
 }
 
 // Merge sort algorithm
 function mergeSort(array, comparator) {
-  if (array.length <= 1) return array;
+    if (array.length <= 1) return array;
 
-  const mid = Math.floor(array.length / 2);
-  const left = mergeSort(array.slice(0, mid), comparator);
-  const right = mergeSort(array.slice(mid), comparator);
+    const mid = Math.floor(array.length / 2);
+    const left = mergeSort(array.slice(0, mid), comparator);
+    const right = mergeSort(array.slice(mid), comparator);
 
-  return merge(left, right, comparator);
+    return merge(left, right, comparator);
 }
 
 function merge(left, right, comparator) {
-  let result = [];
-  while (left.length && right.length) {
-    if (comparator(left[0], right[0]) < 0) result.push(left.shift());
-    else result.push(right.shift());
-  }
-  return [...result, ...left, ...right];
+    let result = [];
+    while (left.length && right.length) {
+        if (comparator(left[0], right[0]) < 0) result.push(left.shift());
+        else result.push(right.shift());
+    }
+    return [...result, ...left, ...right];
 }
 
 // Binary search algorithm
 function binarySearch(array, target) {
-  let left = 0;
-  let right = array.length - 1;
+    let left = 0;
+    let right = array.length - 1;
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
 
-    if (array[mid] === target) return mid;
-    else if (array[mid] < target) left = mid + 1;
-    else right = mid - 1;
-  }
+        if (array[mid] === target) return mid;
+        else if (array[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
 
-  return -1;
+    return -1;
 }
 
 // Update local storage
 function setLocalStorage() {
-  localStorage.setItem("todo-list", JSON.stringify(todo));
+    localStorage.setItem("todo-list", JSON.stringify(todo));
 }
 
 // Display alert messages
 function setAlertMessage(message, color) {
-  todoAlert.innerText = message;
-  todoAlert.style.color = color;
-  todoAlert.classList.remove("toggleMe");
-  setTimeout(() => {
-    todoAlert.classList.add("toggleMe");
-  }, 3000);
+    todoAlert.innerText = message;
+    todoAlert.style.color = color;
+    todoAlert.classList.remove("toggleMe");
+    setTimeout(() => {
+        todoAlert.classList.add("toggleMe");
+    }, 3000);
 }
 
 // Initial call
