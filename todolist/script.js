@@ -100,14 +100,35 @@ function DeleteAllCompletedTasks() {
     setAlertMessage("All completed tasks have been deleted!", "green");
 }
 // Delete item
+let itemToDelete = null; // Store the task that will be deleted
+
+// Function to show the modal with the task's name
 function DeleteToDoItems(index) {
-  if (confirm(`Are you sure you want to delete "${todo[index].item}"?`)) {
-    todo.splice(index, 1);
+  itemToDelete = index; // Store the index of the item to be deleted
+  const item = todo[index];
+  const modalMessage = `Are you sure you want to delete "${item.item}"?`;
+  document.getElementById("modalMessage").textContent = modalMessage;
+  document.getElementById("confirmationModal").style.display = "flex"; // Show the modal
+}
+
+// Confirm the deletion
+function confirmDeleteItem() {
+  if (itemToDelete !== null) {
+    // Delete the task from the todo array
+    todo.splice(itemToDelete, 1);
     setLocalStorage();
     setAlertMessage("Todo item deleted successfully!", "red");
     ReadToDoItems();
+    closeModal();
   }
 }
+
+// Close the modal without deleting
+function closeModal() {
+  document.getElementById("confirmationModal").style.display = "none"; // Hide the modal
+  itemToDelete = null; // Clear the item to delete
+}
+
 
 // Search for tasks using binary search
 function SearchToDoItems() {
