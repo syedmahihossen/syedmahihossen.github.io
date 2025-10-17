@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syed Mahi Hossen - Portfolio</title>
+  <link rel="icon" type="image/x-icon" href="images/syedmahi.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/4878775bf4.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="background-pattern"></div>
+
+  <header>
+    <div class="container header-content">
+      <div class="logo">Syed Mahi Hossen</div>
+      <nav>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-text-content">
+          <p class="greeting">Hello, I'm</p>
+          <h1>Syed Mahi Hossen</h1>
+          <p class="tagline">A Computer Science student passionate about <span id="typed-text"></span></p>
+          <a href="#projects" class="btn primary-btn">Explore My Work <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-image-content">
+          <img src="images/syedmahi.jpg" alt="Syed Mahi Hossen" class="profile-pic-hero">
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section-card">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-description">
+          I’m a Computer Science and Engineering student at Daffodil International University with a deep passion for
+          building things for the web. From the moment I wrote my first line of C++, I was hooked on the process of
+          solving complex problems. I'm currently focused on expanding my skills in JavaScript and modern web
+          frameworks, with the goal of building efficient and beautiful user experiences. I thrive in collaborative
+          environments and am always eager to learn new technologies and apply them to real-world challenges.
+        </p>
+        <div class="education-timeline">
+          <h3>My Journey</h3>
+          <div class="timeline-item-detail">
+            <i class="fas fa-university timeline-icon"></i>
+            <h4>Bachelor of Science in Computer Engineering</h4>
+            <p class="timeline-meta">Daffodil International University | Jul 2023 - Jul 2027</p>
+            <p>Pursuing my Bachelor's degree, focusing on core computer science principles, software development, and
+              web technologies.</p>
+          </div>
+          <div class="timeline-item-detail">
+            <i class="fas fa-school timeline-icon"></i>
+            <h4>Higher Secondary Education, Science</h4>
+            <p class="timeline-meta">Sristy College Of Tangail | May 2020 - Feb 2023</p>
+            <p>Completed my higher secondary studies with a focus on science, achieving a GPA of 5.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section-card">
+      <div class="container">
+        <h2 class="section-title">My Technical & Professional Skills</h2>
+        <div class="skills-grid-professional">
+
+          <div class="skill-category-professional">
+            <h3><i class="fas fa-code"></i> Programming Languages</h3>
+            <div class="skills-list-professional">
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="skill-category-professional">
+            <h3><i class="fas fa-cloud"></i> Cloud & Web</h3>
+            <div class="skills-list-professional">
+              <span class="skill-tag">AWS Cloud Foundations</span>
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">Responsive Design</span>
+            </div>
+          </div>
+
+          <div class="skill-category-professional">
+            <h3><i class="fas fa-tools"></i> Tools & Environment</h3>
+            <div class="skills-list-professional">
+              <span class="skill-tag">Git & GitHub</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Visual Studio Code</span>
+            </div>
+          </div>
+
+          <div class="skill-category-professional">
+            <h3><i class="fas fa-lightbulb"></i> Core Concepts</h3>
+            <div class="skills-list-professional">
+              <span class="skill-tag">OOP</span>
+              <span class="skill-tag">Data Structures</span>
+              <span class="skill-tag">Algorithms</span>
+              <span class="skill-tag">Problem Solving</span>
+            </div>
+          </div>
+
+          <div class="skill-category-professional">
+            <h3><i class="fas fa-users"></i> Professional Skills</h3>
+            <div class="skills-list-professional">
+              <span class="skill-tag">Teamwork</span>
+              <span class="skill-tag">Leadership</span>
+              <span class="skill-tag">Communication</span>
+              <span class="skill-tag">Adaptability</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section-card">
+      <div class="container">
+        <h2 class="section-title">My Creative Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card-new">
+            <!--<img src="images/todolist-project.png" alt="Priority To-Do List Project Thumbnail">-->
+            <div class="project-content">
+              <h3>Priority List Application</h3>
+              <p class="project-meta-desc">
+                A minimalist to-do list application built with JavaScript to help users manage and prioritize
+                their daily tasks efficiently.
+              </p>
+              <div class="project-details-expanded">
+                <p><strong>Problem:</strong> Keeping track of daily tasks often involves overly complex apps. Users need
+                  a simple, fast and non-distracting tool to manage their priorities effectively.</p>
+                <p><strong>Solution:</strong> I developed this lightweight priority list using core web technologies. It
+                  provides a clean interface to quickly add, complete and remove tasks, ensuring a focused and
+                  productive workflow.</p>
+              </div>
+              <div class="tech-stack-new">
+                <span class="tech-pill">HTML</span>
+                <span class="tech-pill">CSS</span>
+                <span class="tech-pill">JavaScript</span>
+              </div>
+              <div class="project-links-new">
+                <a href="https://syedmahihossen.github.io/todolist/" class="btn secondary-btn" target="_blank"><i
+                    class="fas fa-link"></i> Live Demo</a>
+                <a href="https://github.com/syedmahihossen/syedmahihossen.github.io/tree/main/todolist"
+                  class="btn secondary-btn" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="coming-soon-message">More exciting projects are in the pipeline! Stay tuned.</p>
+      </div>
+    </section>
+
+    <section id="experience" class="section-card">
+      <div class="container">
+        <h2 class="section-title">Experience & Certifications</h2>
+
+        <div class="timeline-professional">
+          <div class="timeline-block">
+            <h3><i class="fas fa-briefcase timeline-heading-icon"></i> Professional Experience</h3>
+            <div class="timeline-item-professional">
+              <span class="timeline-marker"></span>
+              <div class="timeline-content">
+                <h4>Executive</h4>
+                <p class="timeline-org">DIU Computer & Programming Club</p>
+                <p class="timeline-date">Feb 2024 - Jan 2025</p>
+                <ul>
+                  <li>Actively involved in organizing club events, workshops, and programming contests.</li>
+                  <li>Collaborated with team members to foster a competitive and supportive programming culture.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-block">
+            <h3><i class="fas fa-hands-helping timeline-heading-icon"></i> Volunteer Experience</h3>
+            <div class="timeline-item-professional">
+              <span class="timeline-marker"></span>
+              <div class="timeline-content">
+                <h4>Volunteer</h4>
+                <p class="timeline-org">ICPC - International Collegiate Programming Contest</p>
+                <p class="timeline-date">Dec 2024</p>
+                <ul>
+                  <li>Assisted with event coordination, participant support, and logistics for the ICPC 2024 onsite
+                    contest.</li>
+                  <li>Contributed to ensuring a seamless experience for participants and the successful execution of the
+                    event.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-block">
+            <h3><i class="fas fa-award timeline-heading-icon"></i> Licenses & Certifications</h3>
+            <div class="timeline-item-professional">
+              <span class="timeline-marker"></span>
+              <div class="timeline-content">
+                <h4>AWS Academy Graduate - AWS Academy Cloud Foundations</h4>
+                <p class="timeline-org"><a class="timeline-org"
+                    href="https://www.credly.com/badges/1981a9be-2a22-474c-be5a-fbd9c585116e/linked_in_profile">Web
+                    Services (AWS)</a></p>
+                <p class="timeline-date">Issued Jul 2025</p>
+              </div>
+            </div>
+            <div class="timeline-item-professional">
+              <span class="timeline-marker"></span>
+              <div class="timeline-content">
+                <h4>Honorable Mention - Data Structures and Competitive Programming</h4>
+                <p class="timeline-org"><a class="timeline-org" href="https://icpc.global/ICPCID/BMJ9W4UNE060">Asia
+                    Dhaka Preliminary</a></p>
+                <p class="timeline-date">Credential ID BMJ9W4UNE060</p>
+                <p class="timeline-date">Issued 2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-card">
+      <div class="container">
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="contact-tagline">I'm always open to discussing new projects, creative ideas, or opportunities to
+          collaborate. Feel free to send me a message!</p>
+
+        <div class="contact-info">
+          <a href="https://www.linkedin.com/in/syedmahihossen/" target="_blank" title="LinkedIn Profile"><i
+              class="fab fa-linkedin fa-2x"></i></a>
+          <a href="https://github.com/syedmahihossen" target="_blank" title="GitHub Profile"><i
+              class="fab fa-github fa-2x"></i></a>
+          <a href="mailto:your_email@example.com" title="Send me an Email"><i class="fas fa-envelope fa-2x"></i></a>
+        </div>
+
+        <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" class="professional-form">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <textarea name="message" placeholder="Your Message" rows="7" required></textarea>
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+          <button type="submit" class="btn primary-btn submit-btn">Send Message <i
+              class="fas fa-paper-plane"></i></button>
+        </form>
+        <div id="form-result" class="form-message"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Syed Mahi Hossen. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
