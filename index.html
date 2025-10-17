@@ -83,74 +83,149 @@
           <div class="skill-category-professional">
             <h3><i class="fas fa-code"></i> Programming Languages</h3>
             <div class="skills-list-professional">
-              <span class="skill-tag">C++</span>
-              <span class="skill-tag">C</span>
-              <span class="skill-tag">Java</span>
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">JavaScript</span>
+              <div class="skill-item">
+                <span class="skill-name">C++</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Java</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Python</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">JavaScript</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 75%"></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="skill-category-professional">
-            <h3><i class="fas fa-cloud"></i> Cloud & Web</h3>
+            <h3><i class="fas fa-cloud"></i> Web Development</h3>
             <div class="skills-list-professional">
-              <span class="skill-tag">AWS Cloud Foundations</span>
-              <span class="skill-tag">HTML5</span>
-              <span class="skill-tag">CSS3</span>
-              <span class="skill-tag">Responsive Design</span>
+              <div class="skill-item">
+                <span class="skill-name">HTML5/CSS3</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Responsive Design</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">AWS Cloud</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 75%"></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="skill-category-professional">
-            <h3><i class="fas fa-tools"></i> Tools & Environment</h3>
+            <h3><i class="fas fa-tools"></i> Development Tools</h3>
             <div class="skills-list-professional">
-              <span class="skill-tag">Git & GitHub</span>
-              <span class="skill-tag">Linux</span>
-              <span class="skill-tag">Visual Studio Code</span>
+              <div class="skill-item">
+                <span class="skill-name">Git & GitHub</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">VS Code</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Linux</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%"></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="skill-category-professional">
-            <h3><i class="fas fa-lightbulb"></i> Core Concepts</h3>
-            <div class="skills-list-professional">
-              <span class="skill-tag">OOP</span>
-              <span class="skill-tag">Data Structures</span>
-              <span class="skill-tag">Algorithms</span>
-              <span class="skill-tag">Problem Solving</span>
+            <h3><i class="fas fa-lightbulb"></i> Core Competencies</h3>
+            <div class="skills-list-professional hex-grid">
+              <div class="hex-skill">
+                <i class="fas fa-code-branch"></i>
+                <span>Data Structures</span>
+              </div>
+              <div class="hex-skill">
+                <i class="fas fa-project-diagram"></i>
+                <span>Algorithms</span>
+              </div>
+              <div class="hex-skill">
+                <i class="fas fa-cube"></i>
+                <span>OOP</span>
+              </div>
+              <div class="hex-skill">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>Problem Solving</span>
+              </div>
             </div>
           </div>
 
           <div class="skill-category-professional">
             <h3><i class="fas fa-users"></i> Professional Skills</h3>
-            <div class="skills-list-professional">
-              <span class="skill-tag">Teamwork</span>
-              <span class="skill-tag">Leadership</span>
-              <span class="skill-tag">Communication</span>
-              <span class="skill-tag">Adaptability</span>
+            <div class="skills-list-professional radar-chart">
+              <div class="radar-skill" style="--skill-level: 90%;">
+                <span>Leadership</span>
+              </div>
+              <div class="radar-skill" style="--skill-level: 95%;">
+                <span>Teamwork</span>
+              </div>
+              <div class="radar-skill" style="--skill-level: 85%;">
+                <span>Communication</span>
+              </div>
+              <div class="radar-skill" style="--skill-level: 88%;">
+                <span>Adaptability</span>
+              </div>
             </div>
+          </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section-card">
+    <section id="projects" class="section-card projects-section">
       <div class="container">
-        <h2 class="section-title">My Creative Projects</h2>
+        <div class="projects-hero">
+          <h2 class="section-title">My Creative Projects</h2>
+          <p class="projects-intro">Explore some of my best work, showcasing creativity, technical skills and
+            problem-solving abilities.</p>
+        </div>
         <div class="projects-grid">
           <div class="project-card-new">
-            <!--<img src="images/todolist-project.png" alt="Priority To-Do List Project Thumbnail">-->
+            <div class="project-thumbnail-wrapper">
+              <img src="images/prioritylist.png" alt="Priority To-Do List Project Thumbnail" class="project-thumbnail">
+            </div>
             <div class="project-content">
-              <h3>Priority List Application</h3>
+              <h3 class="project-title">Priority List Application</h3>
               <p class="project-meta-desc">
                 A minimalist to-do list application built with JavaScript to help users manage and prioritize
                 their daily tasks efficiently.
               </p>
               <div class="project-details-expanded">
-                <p><strong>Problem:</strong> Keeping track of daily tasks often involves overly complex apps. Users need
-                  a simple, fast and non-distracting tool to manage their priorities effectively.</p>
-                <p><strong>Solution:</strong> I developed this lightweight priority list using core web technologies. It
-                  provides a clean interface to quickly add, complete and remove tasks, ensuring a focused and
+                <p><strong>Problem:</strong> Keeping track of daily tasks often involves overly complex apps. Users
+                  need a simple, fast and non-distracting tool to manage their priorities effectively.</p>
+                <p><strong>Solution:</strong> I developed this lightweight priority list using core web technologies.
+                  It provides a clean interface to quickly add, complete and remove tasks, ensuring a focused and
                   productive workflow.</p>
               </div>
               <div class="tech-stack-new">
@@ -215,21 +290,56 @@
             <div class="timeline-item-professional">
               <span class="timeline-marker"></span>
               <div class="timeline-content">
-                <h4>AWS Academy Graduate - AWS Academy Cloud Foundations</h4>
-                <p class="timeline-org"><a class="timeline-org"
-                    href="https://www.credly.com/badges/1981a9be-2a22-474c-be5a-fbd9c585116e/linked_in_profile">Web
-                    Services (AWS)</a></p>
-                <p class="timeline-date">Issued Jul 2025</p>
+                <div class="cert-content">
+                  <div class="cert-logo-wrapper">
+                    <img src="images/aws.jpeg" alt="AWS Certification" class="cert-logo">
+                  </div>
+                  <div class="cert-details">
+                    <h4 class="cert-title">AWS Academy Graduate - AWS Academy Cloud Foundations</h4>
+                    <p class="cert-org">
+                      <a href="https://www.credly.com/badges/1981a9be-2a22-474c-be5a-fbd9c585116e/linked_in_profile" 
+                         target="_blank">Amazon Web Services (AWS)</a>
+                    </p>
+                    <p class="cert-meta">
+                      <i class="far fa-calendar-alt"></i>
+                      Issued Jul 2025
+                    </p>
+                    <p class="cert-meta">
+                      <i class="fas fa-certificate"></i>
+                      Cloud Computing & AWS Services
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="timeline-item-professional">
               <span class="timeline-marker"></span>
               <div class="timeline-content">
-                <h4>ICPC - International Collegiate Programming Contest</h4>
-                <p class="timeline-org"><a class="timeline-org" href="https://icpc.global/ICPCID/BMJ9W4UNE060">Asia
-                    Dhaka Preliminary</a></p>
-                <p class="timeline-date">Credential ID BMJ9W4UNE060</p>
-                <p class="timeline-date">Issued 2024</p>
+                <div class="cert-content">
+                  <div class="cert-logo-wrapper">
+                    <img src="images/icpc.jpeg" alt="ICPC Certification" class="cert-logo">
+                  </div>
+                  <div class="cert-details">
+                    <h4 class="cert-title">ICPC - International Collegiate Programming Contest</h4>
+                    <p class="cert-org">
+                      <a href="https://icpc.global/ICPCID/BMJ9W4UNE060" target="_blank">
+                        Asia Dhaka Preliminary
+                      </a>
+                    </p>
+                    <p class="cert-meta">
+                      <i class="far fa-calendar-alt"></i>
+                      Issued 2024
+                    </p>
+                    <p class="cert-meta">
+                      <i class="fas fa-id-badge"></i>
+                      Credential ID BMJ9W4UNE060
+                    </p>
+                    <p class="cert-meta">
+                      <i class="fas fa-code"></i>
+                      Competitive Programming & Problem Solving
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -248,11 +358,11 @@
               class="fab fa-linkedin fa-2x"></i></a>
           <a href="https://github.com/syedmahihossen" target="_blank" title="GitHub Profile"><i
               class="fab fa-github fa-2x"></i></a>
-          <a href="mailto:your_email@example.com" title="Send me an Email"><i class="fas fa-envelope fa-2x"></i></a>
+          <a href="mailto:syedmahi1979@gmail.com" title="Send me an Email"><i class="fas fa-envelope fa-2x"></i></a>
         </div>
 
         <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" class="professional-form">
-          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+          <input type="hidden" name="access_key" value="4e4949ff-ad57-4d3e-b21f-ec679eb6fe02">
           <div class="form-row">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
